@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com</groupId>
+    <artifactId>MySpringCloud</artifactId>
+    <version>2020</version>
+
+    <!--父工程-->
+    <packaging>pom</packaging>
+    <description>SpringCloud 项目</description>
+
+    <modules>
+        <module>cloud-api-common</module>
+
+        <!--配置中心-->
+        <module>cloud-config-center-3344</module>
+        <module>cloud-config-client-3355</module>
+        <module>cloud-config-client-3366</module>
+
+        <module>cloud-consumer-order80</module>
+        <module>cloud-consumer-zk-order80</module>
+        <module>cloud-consumer-consul-order80</module>
+        <module>cloud-consumer-feign-order80</module>
+        <module>cloud-consumer-feign-hystrix-order80</module>
+
+        <!--流量监控，限流...-->
+        <module>cloud-consumer-hystrix-dashboard9001</module>
+
+        <!--注册中心-->
+        <module>cloud-eureka-server7001</module>
+        <module>cloud-eureka-server7002</module>
+
+        <module>cloud-provider-payment8001</module>
+        <module>cloud-provider-payment8002</module>
+        <module>cloud-provider-zk-payment8004</module>
+        <module>cloud-provider-consul-payment8006</module>
+        <module>cloud-provider-hystrix-payment8001</module>
+
+        <!--网关-->
+        <module>cloud-gateway-gateway9527</module>
+
+        <module>cloud-stream-rabbitmq-consumer8802</module>
+        <module>cloud-stream-rabbitmq-consumer8803</module>
+        <module>cloud-stream-rabbitmq-provider8801</module>
+
+        <module>cloud-alibaba-provider-payment9001</module>
+        <module>cloud-alibaba-provider-payment9002</module>
+        <!--配置中心-->
+        <module>cloud-alibaba-config-nacos-client3377</module>
+        <!--注册中心-->
+        <module>cloud-alibaba-consumer-nacos-order83</module>
+        <!--流量监控，限流...-->
+        <module>cloud-alibaba-sentinel-service8401</module>
+        <module>cloud-alibaba-consumer-nacos-order84</module>
+        <module>cloud-alibaba-provider-payment9003</module>
+        <module>cloud-alibaba-provider-payment9004</module>
+
+        <!--分布式事务-->
+        <module>seata-order-service2001</module><!--订单-->
+        <module>seata-storage-service2002</module><!--库存-->
+        <module>seata-account-service2003</module><!--账户-->
+    </modules>
+
+    <properties>
+        <druid.version>1.1.21</druid.version>
+        <mybatis.version>2.1.1</mybatis.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.2.2.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Hoxton.SR1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>2.1.0.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>microServiceCloud</finalName>
+
+        <!--<resources>-->
+        <!--    <resource>-->
+        <!--        <directory>src/main/resources</directory>-->
+        <!--        <filtering>true</filtering>-->
+        <!--    </resource>-->
+        <!--</resources>-->
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <skip>true</skip>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.3.0.RELEASE</version>
+                <configuration>
+                    <fork>true</fork>
+                    <addResources>true</addResources>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>spring</id>
+            <url>https://maven.aliyun.com/repository/spring</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>public</id>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>public</id>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+</project>
